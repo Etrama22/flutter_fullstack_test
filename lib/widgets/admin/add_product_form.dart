@@ -402,7 +402,7 @@ class _StatusSwitchState extends State<_StatusSwitch> {
           ),
           Switch(
             value: isActive,
-            activeColor: Colors.white,
+            activeThumbColor: Colors.white,
             activeTrackColor: const Color(0xFFFF7900),
             inactiveThumbColor: Colors.white,
             inactiveTrackColor: const Color(0xFFE6E9EF),
