@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project_fullstack/pages/users/users_home_page.dart';
-import '../pages/admin/auth/login_page.dart';
-import '../pages/admin/products/product_list_page.dart';
-import '../pages/admin/products/product_add_page.dart';
-import '../pages/admin/users/user_list_page.dart';
-import '../pages/admin/users/user_add_page.dart';
+import 'package:project_fullstack/pages/users/user_home_page.dart';
+import '../pages/login_page.dart';
+import '../pages/admin/admin_product_list_page.dart';
+import '../pages/admin/admin_product_add_page.dart';
+import '../pages/admin/admin_user_list_page.dart';
+import '../pages/admin/admin_user_add_page.dart';
 
 class AppRoutes {
   // admin routes

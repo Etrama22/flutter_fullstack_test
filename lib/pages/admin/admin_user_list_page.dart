@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:project_fullstack/widgets/admin/user_filter_bar.dart';
 import 'package:project_fullstack/widgets/admin/user_item_card.dart';
-import '../../../../routes/app_routes.dart';
+import '../../../routes/app_routes.dart';
 
 class UserListPage extends StatelessWidget {
   const UserListPage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import '../../pages/admin/products/product_add_page.dart'; // pastiin path ini bener
+import '../../pages/admin/admin_product_add_page.dart'; // pastiin path ini bener
 
 class AddProductFab extends StatelessWidget {
   const AddProductFab({super.key});

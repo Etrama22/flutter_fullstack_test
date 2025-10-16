@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Admin Dashboard',
-      initialRoute: AppRoutes.homeUser,
+      initialRoute: AppRoutes.login,
       routes: appRoutes,
       theme: ThemeData(primarySwatch: Colors.indigo),
     );

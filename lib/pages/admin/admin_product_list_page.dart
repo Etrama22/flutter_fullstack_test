@@ -3,7 +3,7 @@ import 'package:project_fullstack/widgets/admin/product_card.dart';
 import 'package:project_fullstack/widgets/admin/product_filter_bar.dart';
 import 'package:project_fullstack/widgets/admin/add_product_fab.dart';
 import 'package:project_fullstack/widgets/admin/custom_search_app_bar.dart';
-import 'package:project_fullstack/pages/admin/users/user_list_page.dart';
+import 'package:project_fullstack/pages/admin/admin_user_list_page.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage({super.key});

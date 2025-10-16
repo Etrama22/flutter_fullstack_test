@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_fullstack/models/product_model.dart';
+import 'package:project_fullstack/pages/users/user_product_detail_page.dart';
 import 'package:project_fullstack/widgets/users/product_card.dart';
 
 class AllProduct extends StatelessWidget {
@@ -64,20 +65,6 @@ class AllProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   title: const Text(
-      //     "Semua Produk",
-      //     style: TextStyle(
-      //       color: Color(0xFF050506),
-      //       fontSize: 16,
-      //       fontFamily: 'Inter',
-      //       fontWeight: FontWeight.w600,
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.white,
-      //   elevation: 1,
-      //   iconTheme: const IconThemeData(color: Colors.black),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: GridView.builder(
@@ -89,7 +76,18 @@ class AllProduct extends StatelessWidget {
             childAspectRatio: 0.65,
           ),
           itemBuilder: (context, index) {
-            return ProductCard(product: products[index]);
+            final product = products[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ProductDetailPage(product: product),
+                  ),
+                );
+              },
+              child: ProductCard(product: product),
+            );
           },
         ),
       ),
