@@ -32,11 +32,11 @@ class _CustomSearchAppBarState extends State<CustomSearchAppBar> {
 
     await showMenu(
       context: context,
-      color: Colors.transparent, // ⬅️ Biar background transparan
-      elevation: 0, // ⬅️ Hilangin shadow default
+      color: Colors.transparent,
+      elevation: 0,
       position: RelativeRect.fromLTRB(
         position.dx,
-        position.dy + button.size.height + 4, // sedikit jarak biar rapi
+        position.dy + button.size.height + 4,
         position.dx + 150,
         0,
       ),
@@ -126,14 +126,11 @@ class _CustomSearchAppBarState extends State<CustomSearchAppBar> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          InkWell(
-            onTap: () => Navigator.pop(context),
-            child: Container(
-              width: 24,
-              height: 24,
-              alignment: Alignment.center,
-              child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
-            ),
+          Container(
+            width: 24,
+            height: 24,
+            alignment: Alignment.center,
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
           ),
 
           const SizedBox(width: 12),

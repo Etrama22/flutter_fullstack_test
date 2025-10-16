@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_fullstack/models/product_model.dart';
+import 'package:project_fullstack/pages/users/product_list_page.dart';
 import 'package:project_fullstack/widgets/users/product_card.dart';
 
 class ProductRecommendation extends StatelessWidget {
@@ -105,10 +106,12 @@ class ProductRecommendation extends StatelessWidget {
                 ),
                 side: const BorderSide(color: Color(0xFFE7EAEF)),
               ),
-              onPressed:
-                  (
-                    //navigate to
-                  ) {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProductListPage()),
+                );
+              },
               child: const Text(
                 'Lihat Semua Produk',
                 style: TextStyle(
