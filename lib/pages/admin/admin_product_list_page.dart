@@ -3,7 +3,6 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:project_fullstack/routes/app_routes.dart';
 import 'package:project_fullstack/widgets/admin/product_card.dart';
 import 'package:project_fullstack/widgets/filter/widget_filter_bar_v2.dart';
-import 'package:project_fullstack/widgets/filter/widget_filter_bar_v1.dart';
 import 'package:project_fullstack/widgets/widget_floating_button.dart';
 import 'package:project_fullstack/widgets/widget_app_bar.dart';
 
@@ -36,7 +35,7 @@ class ProductListPage extends StatelessWidget {
               ),
             ],
           ),
-          const ProductFilterBar(),
+          const WidgetFilterBarV2(),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 8),

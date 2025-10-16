@@ -27,7 +27,7 @@ class ProductListPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const ProductFilterBar(),
+              const WidgetFilterBarV2(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: AllProduct(),

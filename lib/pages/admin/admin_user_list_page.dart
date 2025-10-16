@@ -43,7 +43,7 @@ class AdminUserListPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const WidgetFilterBar(),
+          const WidgetFilterBarV1(),
           Expanded(
             child: ListView.separated(
               itemCount: users.length,

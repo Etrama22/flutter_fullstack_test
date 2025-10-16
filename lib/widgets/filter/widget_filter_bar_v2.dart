@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class ProductFilterBar extends StatefulWidget {
-  const ProductFilterBar({super.key});
+class WidgetFilterBarV2 extends StatefulWidget {
+  const WidgetFilterBarV2({super.key});
 
   @override
-  State<ProductFilterBar> createState() => _ProductFilterBarState();
+  State<WidgetFilterBarV2> createState() => _WidgetFilterBarV2State();
 }
 
-class _ProductFilterBarState extends State<ProductFilterBar> {
+class _WidgetFilterBarV2State extends State<WidgetFilterBarV2> {
   String selectedFilter = 'Nama Produk';
   String sortOrder = 'Asc';
   int activeFilters = 2; // contoh badge merah
@@ -34,9 +34,9 @@ class _ProductFilterBarState extends State<ProductFilterBar> {
       color: Colors.white,
       child: Row(
         children: [
-          // Dropdown Filter
           Expanded(
             child: Container(
+              height: 40,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
@@ -46,17 +46,12 @@ class _ProductFilterBarState extends State<ProductFilterBar> {
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
+                  isDense: true,
                   value: selectedFilter,
                   icon: Icon(
                     PhosphorIconsRegular.caretDown,
                     size: 16,
                     color: const Color(0xFF050506),
-                  ),
-                  style: const TextStyle(
-                    color: Color(0xFF050506),
-                    fontSize: 14,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
@@ -73,14 +68,15 @@ class _ProductFilterBarState extends State<ProductFilterBar> {
               ),
             ),
           ),
+
           const SizedBox(width: 12),
 
-          // Filter Button
           GestureDetector(
-            onTap: () {
-              // bisa buka modal filter di sini
-            },
+            // onTap: () {
+            //   toggleSortOrder();
+            // },
             child: Container(
+              height: 40,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
@@ -132,6 +128,7 @@ class _ProductFilterBarState extends State<ProductFilterBar> {
           GestureDetector(
             onTap: toggleSortOrder,
             child: Container(
+              height: 40,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(

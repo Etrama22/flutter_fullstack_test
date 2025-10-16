@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 
-class WidgetFilterBar extends StatefulWidget {
-  const WidgetFilterBar({super.key});
+class WidgetFilterBarV1 extends StatefulWidget {
+  const WidgetFilterBarV1({super.key});
 
   @override
-  State<WidgetFilterBar> createState() => _WidgetFilterBarState();
+  State<WidgetFilterBarV1> createState() => _WidgetFilterBarV1State();
 }
 
-class _WidgetFilterBarState extends State<WidgetFilterBar> {
+class _WidgetFilterBarV1State extends State<WidgetFilterBarV1> {
   String selectedFilter = 'Status';
   String sortOrder = 'Asc';
 
-  final List<String> filters = [
-    'Nama Produk',
-    'Harga Produk',
-    'Kategori',
-    'Status',
-  ];
+  final List<String> filters = ['Nama', 'Status'];
 
   void toggleSortOrder() {
     setState(() {
@@ -32,9 +27,9 @@ class _WidgetFilterBarState extends State<WidgetFilterBar> {
       color: Colors.white,
       child: Row(
         children: [
-          // Dropdown Filter
           Expanded(
             child: Container(
+              height: 40,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: ShapeDecoration(
                 color: Colors.white,
@@ -74,10 +69,10 @@ class _WidgetFilterBarState extends State<WidgetFilterBar> {
 
           const SizedBox(width: 12),
 
-          // Sort Order Button
           GestureDetector(
             onTap: toggleSortOrder,
             child: Container(
+              height: 40,
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: ShapeDecoration(
                 color: Colors.white,
