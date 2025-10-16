@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import '../../pages/admin/admin_product_add_page.dart'; // pastiin path ini bener
+import 'package:project_fullstack/pages/admin/admin_product_add_page.dart';
 
-class AddProductFab extends StatelessWidget {
-  const AddProductFab({super.key});
+class WidgetFloatingButton extends StatelessWidget {
+  const WidgetFloatingButton({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:project_fullstack/widgets/admin/product_filter_bar.dart';
+import 'package:project_fullstack/widgets/filter/widget_filter_bar_v2.dart';
 import 'package:project_fullstack/widgets/users/all_product.dart';
 import 'package:project_fullstack/widgets/widget_app_bar.dart';
 
