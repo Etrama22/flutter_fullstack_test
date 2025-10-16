@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_fullstack/widgets/admin/custom_search_app_bar.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:project_fullstack/widgets/admin/product_filter_bar.dart';
 import 'package:project_fullstack/widgets/users/all_product.dart';
+import 'package:project_fullstack/widgets/widget_app_bar.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage({super.key});
@@ -10,33 +11,21 @@ class ProductListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-
-      // body: Column(
-      //   children: [
-      //     const SizedBox(height: 44),
-      //     CustomSearchAppBar(
-      //       // onUserManagement: () {
-      //       //   Navigator.push(
-      //       //     context,
-      //       //     MaterialPageRoute(builder: (_) => const ()),
-      //       //   );
-      //       // },
-      //     ),
-      //     const ProductFilterBar(),
-      //     AllProduct(),
-      //   ],
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               CustomSearchAppBar(
-                // onUserManagement: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (_) => const ()),
-                //   );
-                // },
+                hintText: 'Cari produk...',
+                menuItems: [
+                  AppBarMenuItem(
+                    icon: PhosphorIconsBold.usersThree,
+                    text: 'Management User',
+                    onTap: () {
+                      print('User: Management User');
+                    },
+                  ),
+                ],
               ),
               const ProductFilterBar(),
               SizedBox(

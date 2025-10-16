@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:project_fullstack/routes/app_routes.dart';
 import 'package:project_fullstack/widgets/admin/product_card.dart';
 import 'package:project_fullstack/widgets/admin/product_filter_bar.dart';
 import 'package:project_fullstack/widgets/admin/add_product_fab.dart';
-import 'package:project_fullstack/widgets/admin/custom_search_app_bar.dart';
-import 'package:project_fullstack/pages/admin/admin_user_list_page.dart';
+import 'package:project_fullstack/widgets/widget_app_bar.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage({super.key});
@@ -16,12 +17,23 @@ class ProductListPage extends StatelessWidget {
         children: [
           const SizedBox(height: 44),
           CustomSearchAppBar(
-            onUserManagement: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const UserListPage()),
-              );
-            },
+            hintText: 'Cari produk ',
+            menuItems: [
+              AppBarMenuItem(
+                icon: PhosphorIconsBold.usersThree,
+                text: 'Management User',
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.userList);
+                },
+              ),
+              AppBarMenuItem(
+                icon: PhosphorIconsBold.signOut,
+                text: 'Logout',
+                onTap: () {
+                  print('Admin: Logout');
+                },
+              ),
+            ],
           ),
           const ProductFilterBar(),
           Expanded(

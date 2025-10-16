@@ -22,7 +22,7 @@ final Map<String, WidgetBuilder> appRoutes = {
   AppRoutes.login: (context) => const LoginPage(),
   AppRoutes.productList: (context) => const ProductListPage(),
   AppRoutes.productAdd: (context) => const ProductAddPage(),
-  AppRoutes.userList: (context) => const UserListPage(),
+  AppRoutes.userList: (context) => const AdminUserListPage(),
   AppRoutes.userAdd: (context) => const UserAddPage(),
   AppRoutes.homeUser: (context) => const UsersHomePage(),
 };
