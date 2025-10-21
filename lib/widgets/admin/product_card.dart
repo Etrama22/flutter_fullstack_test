@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:project_fullstack/models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  final String name;
-  final String price;
-  final String category;
-  final int stock;
-  final String status;
-  final String imageUrl;
+  final ProductModel product;
 
-  const ProductCard({
-    super.key,
-    required this.name,
-    required this.price,
-    required this.category,
-    required this.stock,
-    required this.status,
-    required this.imageUrl,
-  });
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +27,10 @@ class ProductCard extends StatelessWidget {
                   height: 100,
                   decoration: ShapeDecoration(
                     image: DecorationImage(
-                      // image: NetworkImage(imageUrl),
-                      image: AssetImage(imageUrl),
+                      image: product.image.isNotEmpty
+                          ? NetworkImage('http://10.0.2.2:8000${product.image}')
+                          : const AssetImage('assets/images/DummyProduct.png')
+                                as ImageProvider,
                       fit: BoxFit.cover,
                     ),
                     shape: RoundedRectangleBorder(
@@ -48,7 +39,6 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -56,7 +46,7 @@ class ProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          name,
+                          product.nama,
                           style: const TextStyle(
                             color: Color(0xFF050506),
                             fontSize: 14,
@@ -67,7 +57,11 @@ class ProductCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          price,
+                          NumberFormat.currency(
+                            locale: 'id_ID',
+                            symbol: 'Rp',
+                            decimalDigits: 0,
+                          ).format(product.harga),
                           style: const TextStyle(
                             color: Color(0xFF050506),
                             fontSize: 14,
@@ -93,7 +87,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            category,
+                            product.kategori,
                             style: const TextStyle(
                               color: Color(0xFF050506),
                               fontSize: 12,
@@ -106,9 +100,9 @@ class ProductCard extends StatelessWidget {
                         const SizedBox(height: 6),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               'Stok: ',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Color(0xFF5B5C63),
                                 fontSize: 12,
                                 fontFamily: 'Inter',
@@ -117,7 +111,7 @@ class ProductCard extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '$stock',
+                              '${product.stokAwal}',
                               style: const TextStyle(
                                 color: Color(0xFF050506),
                                 fontSize: 12,
@@ -136,7 +130,7 @@ class ProductCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
-                                  status,
+                                  product.status,
                                   style: const TextStyle(
                                     color: Color(0xFFE6871A),
                                     fontSize: 12,
@@ -153,13 +147,11 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Right-side action icon (3 dots)
                 const SizedBox(width: 8),
                 const Icon(Icons.more_vert, size: 20),
               ],
             ),
           ),
-
           Container(
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
@@ -205,7 +197,7 @@ class ProductCard extends StatelessWidget {
     required Color color,
     required Color borderColor,
     required VoidCallback onTap,
-    IconData? icon, // 👈 tambahin parameter icon
+    IconData? icon,
   }) {
     return GestureDetector(
       onTap: onTap,

@@ -4,44 +4,7 @@ import 'package:project_fullstack/pages/users/user_product_list_page.dart';
 import 'package:project_fullstack/widgets/users/product_card.dart';
 
 class ProductRecommendation extends StatelessWidget {
-  final List<Product> products = [
-    Product(
-      imageUrl:
-          'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=500',
-      name: 'Meja Makan Kayu Jati - Ukuran besar',
-      price: 'Rp 3.400.000',
-      discount: '-12',
-      rating: '4.9',
-      soldCount: '121',
-    ),
-    Product(
-      imageUrl:
-          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500',
-      name: 'Sofa Minimalis - 3 Dudukan Empuk',
-      price: 'Rp 5.000.000',
-      discount: '-5',
-      rating: '4.9',
-      soldCount: '250',
-    ),
-    Product(
-      imageUrl:
-          'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500',
-      name: 'Kursi Santai Rotan - Desain ergonomis',
-      price: 'Rp 1.200.000',
-      discount: '-10',
-      rating: '4.8',
-      soldCount: '312',
-    ),
-    Product(
-      imageUrl:
-          'https://images.unsplash.com/photo-1567016432779-1fee74948a47?w=500',
-      name: 'Rak Dinding Modern - Minimalis',
-      price: 'Rp 350.000',
-      // Tidak ada diskon
-      rating: '4.9',
-      soldCount: '500+',
-    ),
-  ];
+  final List<ProductModel> products = [];
 
   ProductRecommendation({super.key});
 

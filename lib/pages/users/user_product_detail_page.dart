@@ -7,7 +7,7 @@ import 'package:project_fullstack/widgets/product/product_footer.dart';
 import 'package:project_fullstack/widgets/product/product_shipping.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
 
   const ProductDetailPage({super.key, required this.product});
 
@@ -19,7 +19,7 @@ class ProductDetailPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.5,
         title: Text(
-          product.name,
+          product.nama,
           style: const TextStyle(
             color: Colors.black,
             fontFamily: "Inter",
@@ -36,22 +36,37 @@ class ProductDetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ProductCarousel(imageUrl: product.imageUrl),
-            ProductDetailInfo(
-              name: product.name,
-              rating: product.rating,
-              soldCount: product.soldCount,
+            // Carousel produk (gambar utama)
+            ProductCarousel(
+              imageUrl: product.image.isNotEmpty
+                  ? product.image
+                  : 'https://via.placeholder.com/300',
             ),
+
+            ProductDetailInfo(
+              name: product.nama,
+              rating: '4.5',
+              soldCount: '${product.stokAwal - product.stokPengurangan}',
+              // category: product.kategori,
+              // status: product.status,
+            ),
+
             const SizedBox(height: 8),
             const ProductShipping(),
             const SizedBox(height: 8),
-            const ProductDescription(),
+
+            // ProductDescription(
+            //   description: product.deskripsi.isNotEmpty
+            //       ? product.deskripsi
+            //       : 'Tidak ada deskripsi produk.',
+            // ),
           ],
         ),
       ),
+
       bottomNavigationBar: ProductFooter(
-        price: product.price,
-        discount: product.discount,
+        price: 'Rp${product.harga}',
+        discount: null,
       ),
     );
   }

@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 
 class AuthController {
   // For local
-  // final String baseUrl = "http://10.0.2.2:8000/api/v1/users";
+  final String baseUrl = "http://10.0.2.2:8000/api/v1/users";
 
   // For remote
-  final String baseUrl = "http://10.1.31.21:8000/api/v1/users";
+  // final String baseUrl = "http://10.1.31.21:8000/api/v1/users";
 
   Future<bool> login(String email, String password) async {
     try {

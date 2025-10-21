@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_fullstack/models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
 
   const ProductCard({super.key, required this.product});
 
@@ -19,7 +19,10 @@ class ProductCard extends StatelessWidget {
             width: double.infinity,
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: NetworkImage(product.imageUrl),
+                image: product.image.isNotEmpty
+                    ? NetworkImage('http://10.0.2.2:8000${product.image}')
+                    : const AssetImage('assets/images/DummyProduct.png')
+                          as ImageProvider,
                 fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(
@@ -34,7 +37,7 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name,
+                  product.nama,
                   style: const TextStyle(
                     color: Color(0xFF050506),
                     fontSize: 14,
@@ -49,7 +52,7 @@ class ProductCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      product.price,
+                      'Rp${product.harga.toStringAsFixed(0)}',
                       style: const TextStyle(
                         color: Color(0xFFFF7900),
                         fontSize: 12,
@@ -58,28 +61,6 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    if (product.discount != null)
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 2,
-                        ),
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFFFFF2E6),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
-                        child: Text(
-                          '${product.discount}%',
-                          style: const TextStyle(
-                            color: Color(0xFFFF7900),
-                            fontSize: 12,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -88,7 +69,7 @@ class ProductCard extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.amber, size: 16),
                     const SizedBox(width: 4),
                     Text(
-                      product.rating,
+                      product.rating.toStringAsFixed(1),
                       style: const TextStyle(
                         color: Color(0xFF5B5C63),
                         fontSize: 12,

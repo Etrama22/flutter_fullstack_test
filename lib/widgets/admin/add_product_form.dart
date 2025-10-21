@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddProductForm extends StatelessWidget {
   const AddProductForm({super.key});
@@ -36,7 +38,7 @@ class AddProductForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            _UploadImageSection(),
+            UploadImageSection(),
 
             const SizedBox(height: 16),
 
@@ -64,39 +66,81 @@ class AddProductForm extends StatelessWidget {
   }
 }
 
-class _UploadImageSection extends StatelessWidget {
+class UploadImageSection extends StatefulWidget {
+  final Function(File?)? onImageSelected;
+
+  const UploadImageSection({super.key, this.onImageSelected});
+
+  @override
+  State<UploadImageSection> createState() => _UploadImageSectionState();
+}
+
+class _UploadImageSectionState extends State<UploadImageSection> {
+  File? _selectedImage;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final XFile? pickedImage = await _picker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedImage != null) {
+      setState(() {
+        _selectedImage = File(pickedImage.path);
+      });
+      widget.onImageSelected?.call(_selectedImage);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // PREVIEW GAMBAR
         Container(
           width: double.infinity,
           height: 160,
           decoration: BoxDecoration(
             color: const Color(0xFFF7F8F9),
             borderRadius: BorderRadius.circular(12),
+            image: _selectedImage != null
+                ? DecorationImage(
+                    image: FileImage(_selectedImage!),
+                    fit: BoxFit.cover,
+                  )
+                : null,
           ),
-          child: const Center(
-            child: Icon(Icons.image_outlined, size: 40, color: Colors.grey),
-          ),
+          child: _selectedImage == null
+              ? const Center(
+                  child: Icon(
+                    Icons.image_outlined,
+                    size: 40,
+                    color: Colors.grey,
+                  ),
+                )
+              : null,
         ),
         const SizedBox(height: 16),
-        Container(
-          width: double.infinity,
-          height: 40,
-          decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFE7EAEF)),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: const Center(
-            child: Text(
-              'Unggah Gambar',
-              style: TextStyle(
-                color: Color(0xFF020C1F),
-                fontSize: 14,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
+        // TOMBOL UPLOAD
+        GestureDetector(
+          onTap: _pickImage,
+          child: Container(
+            width: double.infinity,
+            height: 40,
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFFE7EAEF)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Center(
+              child: Text(
+                'Unggah Gambar',
+                style: TextStyle(
+                  color: Color(0xFF020C1F),
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),

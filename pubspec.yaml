@@ -37,6 +37,8 @@ dependencies:
   phosphor_flutter: ^2.1.0
   carousel_slider: ^5.1.1
   http: ^1.1.0
+  intl: ^0.18.1
+  image_picker: ^1.2.0
 
 dev_dependencies:
   flutter_test:
