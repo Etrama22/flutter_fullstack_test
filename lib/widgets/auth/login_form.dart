@@ -15,7 +15,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  final _email = TextEditingController();
+  final _identifier = TextEditingController();
   final _password = TextEditingController();
   final _auth = AuthController();
 
@@ -26,14 +26,16 @@ class _LoginFormState extends State<LoginForm> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
-    final success = await _auth.login(_email.text, _password.text);
+    final role = await _auth.login(_identifier.text, _password.text);
     setState(() => _isLoading = false);
 
-    if (success) {
+    if (role == 'admin') {
       Navigator.pushReplacementNamed(context, AppRoutes.productList);
+    } else if (role == 'user') {
+      Navigator.pushReplacementNamed(context, AppRoutes.homeUser);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Email atau password salah!')),
+        const SnackBar(content: Text('Email/Username atau password salah!')),
       );
     }
   }
@@ -59,10 +61,10 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 24),
 
           LoginField(
-            label: 'Email',
-            hint: 'Enter Email',
-            controller: _email,
-            validator: (v) => v!.isEmpty ? 'Email wajib diisi' : null,
+            label: 'Username atau Email',
+            hint: 'Masukkan username atau email',
+            controller: _identifier,
+            validator: (v) => v!.isEmpty ? 'Username/Email wajib diisi' : null,
           ),
           const SizedBox(height: 16),
 

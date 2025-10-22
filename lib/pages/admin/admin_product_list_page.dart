@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:project_fullstack/controllers/auth_controller.dart';
 import 'package:project_fullstack/controllers/product_list_controller.dart';
 import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/routes/app_routes.dart';
+import 'package:project_fullstack/widgets/app_bar/app_bar_menu_item.dart';
 import 'package:project_fullstack/widgets/filter/widget_filter_bar_v2.dart';
 import 'package:project_fullstack/widgets/admin/product_card.dart';
-import 'package:project_fullstack/widgets/widget_app_bar.dart';
+import 'package:project_fullstack/widgets/app_bar/app_bar_custom_search.dart';
 import 'package:project_fullstack/widgets/widget_floating_button.dart';
 
 class AdminProductListPage extends StatefulWidget {
@@ -17,14 +19,23 @@ class AdminProductListPage extends StatefulWidget {
 
 class _AdminProductListPageState extends State<AdminProductListPage> {
   List<ProductModel> products = [];
+  List<ProductModel> filteredProducts = [];
   bool isLoading = true;
   String selectedOrder = 'desc';
   String selectedFilter = 'created_at';
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadProducts();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   Future<void> _loadProducts() async {
@@ -36,12 +47,24 @@ class _AdminProductListPageState extends State<AdminProductListPage> {
       );
       setState(() {
         products = result;
+        filteredProducts = result;
       });
     } catch (e) {
       print('Error fetching products: $e');
     } finally {
       setState(() => isLoading = false);
     }
+  }
+
+  void _onSearchChanged() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      filteredProducts = products.where((p) {
+        final nameMatch = p.nama.toLowerCase().contains(query);
+        final kategoriMatch = p.kategori.toLowerCase().contains(query);
+        return nameMatch || kategoriMatch;
+      }).toList();
+    });
   }
 
   void _onFilterChange(String filter) {
@@ -71,8 +94,9 @@ class _AdminProductListPageState extends State<AdminProductListPage> {
       body: Column(
         children: [
           const SizedBox(height: 44),
-          CustomSearchAppBar(
+          AppBarCustomSearch(
             hintText: 'Cari produk...',
+            controller: _searchController,
             menuItems: [
               AppBarMenuItem(
                 icon: PhosphorIconsBold.usersThree,
@@ -82,7 +106,14 @@ class _AdminProductListPageState extends State<AdminProductListPage> {
               AppBarMenuItem(
                 icon: PhosphorIconsBold.signOut,
                 text: 'Logout',
-                onTap: () => print('Logout pressed'),
+                onTap: () async {
+                  await AuthController().logout();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    AppRoutes.login,
+                    (route) => false,
+                  );
+                },
               ),
             ],
           ),
@@ -97,9 +128,9 @@ class _AdminProductListPageState extends State<AdminProductListPage> {
                     onRefresh: _loadProducts,
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      itemCount: products.length,
+                      itemCount: filteredProducts.length,
                       itemBuilder: (context, index) {
-                        final p = products[index];
+                        final p = filteredProducts[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
                           child: ProductCard(product: p),

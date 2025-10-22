@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class AddProductForm extends StatelessWidget {
   const AddProductForm({super.key});
@@ -122,9 +123,11 @@ class _UploadImageSectionState extends State<UploadImageSection> {
               : null,
         ),
         const SizedBox(height: 16),
-        // TOMBOL UPLOAD
         GestureDetector(
           onTap: _pickImage,
+
+          // add this import at the top of the file:
+          // import 'package:phosphor_flutter/phosphor_flutter.dart';
           child: Container(
             width: double.infinity,
             height: 40,
@@ -132,15 +135,26 @@ class _UploadImageSectionState extends State<UploadImageSection> {
               border: Border.all(color: const Color(0xFFE7EAEF)),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Center(
-              child: Text(
-                'Unggah Gambar',
-                style: TextStyle(
-                  color: Color(0xFF020C1F),
-                  fontSize: 14,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                ),
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    PhosphorIconsRegular.uploadSimple,
+                    size: 20,
+                    color: const Color(0xFF020C1F),
+                  ),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Unggah Gambar',
+                    style: TextStyle(
+                      color: Color(0xFF020C1F),
+                      fontSize: 14,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

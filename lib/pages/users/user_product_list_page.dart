@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:project_fullstack/widgets/app_bar/app_bar_menu_item.dart';
 import 'package:project_fullstack/widgets/filter/widget_filter_bar_v2.dart';
 import 'package:project_fullstack/widgets/users/all_product.dart';
-import 'package:project_fullstack/widgets/widget_app_bar.dart';
+import 'package:project_fullstack/widgets/app_bar/app_bar_custom_search.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage({super.key});
@@ -15,7 +16,7 @@ class ProductListPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomSearchAppBar(
+              AppBarCustomSearch(
                 hintText: 'Cari produk...',
                 menuItems: [
                   AppBarMenuItem(
@@ -26,6 +27,7 @@ class ProductListPage extends StatelessWidget {
                     },
                   ),
                 ],
+                controller: TextEditingController(),
               ),
               const WidgetFilterBarV2(),
               SizedBox(

@@ -7,14 +7,12 @@ import '../pages/admin/admin_user_list_page.dart';
 import '../pages/admin/admin_user_add_page.dart';
 
 class AppRoutes {
-  // admin routes
   static const login = '/login';
   static const productList = '/products';
   static const productAdd = '/products/add';
   static const userList = '/users';
   static const userAdd = '/users/add';
 
-  // users routes
   static const homeUser = '/users/home';
 }
 
