@@ -95,6 +95,17 @@ class ProductStatusSwitch extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(color: Color(0xFFE7EAEF)),
               ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0xFFE7EAEF)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Color(0xFFE7EAEF),
+                  width: 1.5,
+                ),
+              ),
             ),
             style: const TextStyle(
               color: Color(0xFF020C1F),

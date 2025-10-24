@@ -20,46 +20,65 @@ class ProductPriceField extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Row(
-            children: [
-              Container(
-                height: 40,
+          TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+              prefixIcon: Container(
+                //style background color to 0xFFE5E5E5
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFE7EAEF)),
-                  borderRadius: BorderRadius.circular(10),
+                margin: const EdgeInsets.only(right: 8),
+                width: 50,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFF7F8F9),
+                  border: Border(
+                    left: BorderSide(color: Color(0xFFE7EAEF), width: 1),
+                    top: BorderSide(color: Color(0xFFE7EAEF), width: 1),
+                    bottom: BorderSide(color: Color(0xFFE7EAEF), width: 1),
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                  ),
                 ),
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
                 child: const Text(
                   'Rp',
                   style: TextStyle(
-                    color: Color(0xFF5B5C63),
+                    color: Color(0xFF000000),
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: TextField(
-                  controller: controller,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: '0',
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Color(0xFFE7EAEF)),
-                    ),
-                  ),
-                  style: const TextStyle(
-                    color: Color(0xFF020C1F),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
+              hintText: '0',
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0xFFE7EAEF)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0xFFE7EAEF)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Color(0xFFE7EAEF),
+                  width: 1.5,
                 ),
               ),
-            ],
+            ),
+            style: const TextStyle(
+              color: Color(0xFF020C1F),
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ],
       ),
