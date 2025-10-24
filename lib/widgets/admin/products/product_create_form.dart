@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:project_fullstack/widgets/admin/products/components/product_footer.dart';
 import 'package:project_fullstack/widgets/admin/products/components/product_upload_image.dart';
 import 'components/product_text_field.dart';
@@ -10,6 +8,7 @@ import 'components/product_text_area.dart';
 import 'components/product_price_field.dart';
 import 'components/product_stock_field.dart';
 import 'components/product_status_switch.dart';
+import 'package:project_fullstack/controllers/product_controller.dart';
 
 class AddProductForm extends StatefulWidget {
   const AddProductForm({super.key});
@@ -30,28 +29,14 @@ class _AddProductFormState extends State<AddProductForm> {
   File? imageFile;
   bool isActive = true;
   bool isLoading = false;
-
-  Future<String?> uploadImage(File image) async {
-    final url = Uri.parse('http://10.1.45.93:8000/api/v1/upload-image');
-    var request = http.MultipartRequest('POST', url);
-    request.files.add(await http.MultipartFile.fromPath('file', image.path));
-    var response = await request.send();
-    if (response.statusCode == 200) {
-      final respStr = await response.stream.bytesToString();
-      final data = jsonDecode(respStr);
-      if (data['image'] is String) {
-        return data['image'];
-      }
-    }
-    return null;
-  }
+  final ProductController productController = ProductController();
 
   Future<void> submitProduct() async {
     setState(() => isLoading = true);
 
     String? imageStr;
     if (imageFile != null) {
-      imageStr = await uploadImage(imageFile!);
+      imageStr = await productController.uploadImage(imageFile!);
       if (imageStr == null || imageStr.isEmpty) {
         setState(() => isLoading = false);
         ScaffoldMessenger.of(
@@ -61,23 +46,14 @@ class _AddProductFormState extends State<AddProductForm> {
       }
     }
 
-    final url = Uri.parse('http://10.1.45.93:8000/api/v1/products/add');
-    final body = {
-      "image": imageStr ?? "",
-      "nama": namaController.text,
-      "kategori": kategori,
-      "stokAwal": int.tryParse(stokController.text) ?? 0,
-      "stokPengurangan": 0,
-      "stokPenambahan": 0,
-      "harga": int.tryParse(hargaController.text) ?? 0,
-      "status": status,
-      "deskripsi": deskripsiController.text,
-    };
-
-    final response = await http.post(
-      url,
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(body),
+    final response = await productController.submitProduct(
+      nama: namaController.text,
+      kategori: kategori,
+      stokAwal: int.tryParse(stokController.text) ?? 0,
+      harga: int.tryParse(hargaController.text) ?? 0,
+      status: status,
+      deskripsi: deskripsiController.text,
+      image: imageStr ?? "",
     );
 
     setState(() => isLoading = false);
