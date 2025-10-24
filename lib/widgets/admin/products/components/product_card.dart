@@ -28,7 +28,9 @@ class ProductCard extends StatelessWidget {
                   decoration: ShapeDecoration(
                     image: DecorationImage(
                       image: product.image.isNotEmpty
-                          ? NetworkImage('http://10.0.2.2:8000${product.image}')
+                          ? NetworkImage(
+                              'http://10.1.45.93:8000${product.image}',
+                            )
                           : const AssetImage('assets/images/DummyProduct.png')
                                 as ImageProvider,
                       fit: BoxFit.cover,

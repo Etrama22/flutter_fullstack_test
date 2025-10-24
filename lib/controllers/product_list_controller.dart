@@ -10,7 +10,11 @@ class ProductService {
     int size = 10,
   }) async {
     final url = Uri.parse(
-      'http://10.0.2.2:8000/api/v1/products/getAll?order=$order&orderBy=$orderBy&page=$page&size=$size',
+      // Base Url for local development
+      // 'http://10.0.2.2:8000/api/v1/products/getAll?order=$order&orderBy=$orderBy&page=$page&size=$size',
+
+      // Base Url for remote development
+      'http://10.1.45.93:8000/api/v1/products/getAll?order=$order&orderBy=$orderBy&page=$page&size=$size',
     );
 
     final response = await http.get(url);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/widgets/product/product_carousel.dart';
-import 'package:project_fullstack/widgets/product/product_description.dart';
+// import 'package:project_fullstack/widgets/product/product_description.dart';
 import 'package:project_fullstack/widgets/product/product_detail_info.dart';
 import 'package:project_fullstack/widgets/product/product_footer.dart';
 import 'package:project_fullstack/widgets/product/product_shipping.dart';
@@ -36,7 +36,6 @@ class ProductDetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Carousel produk (gambar utama)
             ProductCarousel(
               imageUrl: product.image.isNotEmpty
                   ? product.image

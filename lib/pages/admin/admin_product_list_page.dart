@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:project_fullstack/controllers/auth_controller.dart';
@@ -6,7 +8,7 @@ import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/routes/app_routes.dart';
 import 'package:project_fullstack/widgets/app_bar/app_bar_menu_item.dart';
 import 'package:project_fullstack/widgets/filter/widget_filter_bar_v2.dart';
-import 'package:project_fullstack/widgets/admin/product_card.dart';
+import 'package:project_fullstack/widgets/admin/products/components/product_card.dart';
 import 'package:project_fullstack/widgets/app_bar/app_bar_custom_search.dart';
 import 'package:project_fullstack/widgets/widget_floating_button.dart';
 

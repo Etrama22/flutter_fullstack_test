@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_fullstack/widgets/admin/add_product_form.dart';
+import 'package:project_fullstack/widgets/admin/products/product_create_form.dart';
 
 class ProductAddPage extends StatelessWidget {
   const ProductAddPage({super.key});
@@ -18,7 +18,6 @@ class ProductAddPage extends StatelessWidget {
       body: Column(
         children: const [
           Expanded(child: SingleChildScrollView(child: AddProductForm())),
-          AddProductFooter(),
         ],
       ),
     );
