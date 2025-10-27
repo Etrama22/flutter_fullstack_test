@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:project_fullstack/models/product_model.dart';
+import 'package:project_fullstack/config/app_config.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
@@ -28,9 +29,7 @@ class ProductCard extends StatelessWidget {
                   decoration: ShapeDecoration(
                     image: DecorationImage(
                       image: product.image.isNotEmpty
-                          ? NetworkImage(
-                              'http://10.1.45.93:8000${product.image}',
-                            )
+                          ? NetworkImage(AppConfig.imageUrl(product.image))
                           : const AssetImage('assets/images/DummyProduct.png')
                                 as ImageProvider,
                       fit: BoxFit.cover,

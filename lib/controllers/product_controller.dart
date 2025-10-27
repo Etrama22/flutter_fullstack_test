@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:project_fullstack/config/app_config.dart';
 
 class ProductController {
   Future<String?> uploadImage(File image) async {
-    final url = Uri.parse('http://10.1.45.93:8000/api/v1/upload-image');
+    final url = Uri.parse('${AppConfig.apiBase}/upload-image');
     var request = http.MultipartRequest('POST', url);
     request.files.add(await http.MultipartFile.fromPath('file', image.path));
     var response = await request.send();
@@ -27,7 +28,7 @@ class ProductController {
     required String deskripsi,
     String image = "",
   }) async {
-    final url = Uri.parse('http://10.1.45.93:8000/api/v1/products/add');
+    final url = Uri.parse('${AppConfig.apiBase}/products/add');
     final body = {
       "image": image,
       "nama": nama,

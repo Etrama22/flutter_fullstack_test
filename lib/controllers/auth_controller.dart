@@ -3,18 +3,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project_fullstack/config/app_config.dart';
 
 class AuthController {
-  // For local
-  // final String baseUrl = "http://10.0.2.2:8000/api/v1/users";
-
-  // For remote
-  final String baseUrl = "http://10.1.45.93:8000/api/v1/users";
+  final String usersBase = '${AppConfig.apiBase}/users';
 
   Future<String?> login(String identifier, String password) async {
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/login'),
+        Uri.parse('$usersBase/login'),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({"identifier": identifier, "password": password}),
       );
