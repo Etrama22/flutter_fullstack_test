@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:project_fullstack/config/app_config.dart';
 import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/widgets/product/product_carousel.dart';
-// import 'package:project_fullstack/widgets/product/product_description.dart';
+import 'package:project_fullstack/widgets/product/product_description.dart';
 import 'package:project_fullstack/widgets/product/product_detail_info.dart';
 import 'package:project_fullstack/widgets/product/product_footer.dart';
 import 'package:project_fullstack/widgets/product/product_shipping.dart';
@@ -73,15 +73,14 @@ class ProductDetailPage extends StatelessWidget {
             const ProductShipping(),
             const SizedBox(height: 8),
 
-            // ProductDescription(
-            //   description: product.deskripsi.isNotEmpty
-            //       ? product.deskripsi
-            //       : 'Tidak ada deskripsi produk.',
-            // ),
+            ProductDescription(
+              description: product.deskripsi.isNotEmpty
+                  ? product.deskripsi
+                  : 'Tidak ada deskripsi produk.',
+            ),
           ],
         ),
       ),
-
       bottomNavigationBar: ProductFooter(price: price, discount: null),
     );
   }
