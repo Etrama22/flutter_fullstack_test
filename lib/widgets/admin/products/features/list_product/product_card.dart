@@ -69,8 +69,9 @@ class ProductCard extends StatelessWidget {
       success = false;
     } finally {
       try {
-        if (Navigator.of(context, rootNavigator: true).canPop())
+        if (Navigator.of(context, rootNavigator: true).canPop()) {
           Navigator.of(context, rootNavigator: true).pop();
+        }
       } catch (_) {}
     }
 

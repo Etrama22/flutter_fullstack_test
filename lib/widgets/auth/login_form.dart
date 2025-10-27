@@ -32,7 +32,7 @@ class _LoginFormState extends State<LoginForm> {
     if (role == 'admin') {
       Navigator.pushReplacementNamed(context, AppRoutes.productList);
     } else if (role == 'user') {
-      Navigator.pushReplacementNamed(context, AppRoutes.homeUser);
+      Navigator.pushReplacementNamed(context, AppRoutes.home);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Email/Username atau password salah!')),

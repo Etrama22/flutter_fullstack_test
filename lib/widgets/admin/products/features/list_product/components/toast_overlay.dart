@@ -6,7 +6,7 @@ class ToastOverlay {
     BuildContext context, {
     required bool success,
     required String message,
-    Duration duration = const Duration(seconds: 3),
+    Duration duration = const Duration(seconds: 2),
   }) {
     final toastColor = success
         ? const Color(0xFF1EA04B)
@@ -84,8 +84,9 @@ class ToastOverlay {
     ).then((_) async {
       await Future.delayed(duration);
       try {
-        if (Navigator.of(context, rootNavigator: true).canPop())
+        if (Navigator.of(context, rootNavigator: true).canPop()) {
           Navigator.of(context, rootNavigator: true).pop();
+        }
       } catch (_) {}
     });
   }

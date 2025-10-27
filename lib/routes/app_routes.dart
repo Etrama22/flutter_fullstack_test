@@ -12,8 +12,7 @@ class AppRoutes {
   static const productAdd = '/products/add';
   static const userList = '/users';
   static const userAdd = '/users/add';
-
-  static const homeUser = '/users/home';
+  static const home = '/home';
 }
 
 final Map<String, WidgetBuilder> appRoutes = {
@@ -22,5 +21,5 @@ final Map<String, WidgetBuilder> appRoutes = {
   AppRoutes.productAdd: (context) => const ProductAddPage(),
   AppRoutes.userList: (context) => const AdminUserListPage(),
   AppRoutes.userAdd: (context) => const UserAddPage(),
-  AppRoutes.homeUser: (context) => const UsersHomePage(),
+  AppRoutes.home: (context) => const UsersHomePage(),
 };

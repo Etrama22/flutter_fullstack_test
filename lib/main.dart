@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Admin Dashboard',
-      initialRoute: AppRoutes.login,
+      title: 'Furniture Ecommerce',
+      initialRoute: AppRoutes.home,
       routes: appRoutes,
       theme: ThemeData(primarySwatch: Colors.indigo),
     );
