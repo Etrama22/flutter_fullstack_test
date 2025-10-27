@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:project_fullstack/controllers/auth_controller.dart';
-import 'package:project_fullstack/controllers/product_list_controller.dart';
+import 'package:project_fullstack/controllers/product_controller.dart';
 import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/routes/app_routes.dart';
 import 'package:project_fullstack/widgets/app_bar/app_bar_menu_item.dart';
@@ -42,7 +42,7 @@ class _AdminProductListPageState extends State<AdminProductListPage> {
   Future<void> _loadProducts() async {
     setState(() => isLoading = true);
     try {
-      final result = await ProductService.getProducts(
+      final result = await ProductController().getProducts(
         order: selectedOrder,
         orderBy: selectedFilter,
       );

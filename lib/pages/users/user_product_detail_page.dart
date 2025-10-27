@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:project_fullstack/config/app_config.dart';
 import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/widgets/product/product_carousel.dart';
 // import 'package:project_fullstack/widgets/product/product_description.dart';
@@ -11,8 +13,29 @@ class ProductDetailPage extends StatelessWidget {
 
   const ProductDetailPage({super.key, required this.product});
 
+  String _resolveImageUrl(String imagePath) {
+    if (imagePath.isEmpty) return 'https://via.placeholder.com/600';
+    if (imagePath.startsWith('http')) return imagePath;
+
+    final apiBase = AppConfig.apiBase.replaceAll(RegExp(r'/$'), '');
+    String hostBase = apiBase;
+    final apiIndex = apiBase.indexOf('/api');
+    if (apiIndex != -1) hostBase = apiBase.substring(0, apiIndex);
+
+    final normalizedPath = imagePath.replaceAll(RegExp(r'^/'), '');
+    final useHost = imagePath.startsWith('/uploads');
+    return useHost ? '$hostBase/$normalizedPath' : '$apiBase/$normalizedPath';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final imageUrl = _resolveImageUrl(product.image);
+    final price = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp',
+      decimalDigits: 0,
+    ).format(product.harga);
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
       appBar: AppBar(
@@ -36,16 +59,12 @@ class ProductDetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ProductCarousel(
-              imageUrl: product.image.isNotEmpty
-                  ? product.image
-                  : 'https://via.placeholder.com/300',
-            ),
+            ProductCarousel(imageUrl: imageUrl),
 
             ProductDetailInfo(
               name: product.nama,
-              rating: '4.5',
-              soldCount: '${product.stokAwal - product.stokPengurangan}',
+              rating: product.rating.toStringAsFixed(1),
+              soldCount: '${product.soldCount}',
               // category: product.kategori,
               // status: product.status,
             ),
@@ -63,10 +82,7 @@ class ProductDetailPage extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: ProductFooter(
-        price: 'Rp${product.harga}',
-        discount: null,
-      ),
+      bottomNavigationBar: ProductFooter(price: price, discount: null),
     );
   }
 }

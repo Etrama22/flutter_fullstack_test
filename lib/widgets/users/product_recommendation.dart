@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_fullstack/models/product_model.dart';
 import 'package:project_fullstack/pages/users/user_product_list_page.dart';
-import 'package:project_fullstack/widgets/users/product_card.dart';
+import 'package:project_fullstack/widgets/users/product_list.dart';
 
 class ProductRecommendation extends StatelessWidget {
   final List<ProductModel> products = [];
@@ -43,20 +43,9 @@ class ProductRecommendation extends StatelessWidget {
             ),
           ),
 
-          GridView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: products.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 0.65,
-            ),
-            itemBuilder: (context, index) {
-              return ProductCard(product: products[index]);
-            },
+          SizedBox(
+            height: 420,
+            child: ProductList(order: 'desc', orderBy: 'soldCount', size: 4),
           ),
 
           Padding(
