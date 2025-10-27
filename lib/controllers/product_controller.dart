@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:project_fullstack/config/app_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductController {
   Future<String?> uploadImage(File image) async {
@@ -46,5 +47,31 @@ class ProductController {
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(body),
     );
+  }
+
+  Future<bool> deleteProduct(String productId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('access_token');
+      final url = Uri.parse('${AppConfig.apiBase}/products/delete/$productId');
+
+      final headers = <String, String>{
+        "Content-Type": "application/json",
+        if (token != null && token.isNotEmpty) "Authorization": "Bearer $token",
+      };
+
+      final response = await http.delete(url, headers: headers);
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        return true;
+      } else {
+        // Optional: print server message for debugging
+        print('Delete failed (${response.statusCode}): ${response.body}');
+        return false;
+      }
+    } catch (e) {
+      print('Delete error: $e');
+      return false;
+    }
   }
 }

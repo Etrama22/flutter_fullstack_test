@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:project_fullstack/widgets/admin/products/components/product_footer.dart';
-import 'package:project_fullstack/widgets/admin/products/components/product_upload_image.dart';
+import 'package:project_fullstack/widgets/admin/products/features/add_product/components/product_footer.dart';
+import 'package:project_fullstack/widgets/admin/products/features/add_product/components/product_upload_image.dart';
 import 'components/product_text_field.dart';
 import 'components/product_dropdown_field.dart';
 import 'components/product_text_area.dart';
@@ -121,7 +121,7 @@ class _AddProductFormState extends State<AddProductForm> {
               placeholder: 'Pilih kategori',
               isRequired: true,
               value: kategori,
-              items: const ['meja', 'kursi', 'lemari'],
+              items: const ['Meja', 'Kursi', 'Lemari'],
               onChanged: (val) {
                 setState(() {
                   kategori = val;
@@ -140,7 +140,7 @@ class _AddProductFormState extends State<AddProductForm> {
               onChanged: (val) {
                 setState(() {
                   isActive = val;
-                  status = val ? 'aktif' : 'nonaktif';
+                  status = val ? 'Aktif' : 'Nonaktif';
                 });
               },
               ambangStokController: ambangStokController,

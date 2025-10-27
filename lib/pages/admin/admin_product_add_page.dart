@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_fullstack/widgets/admin/products/product_create_form.dart';
+import 'package:project_fullstack/widgets/admin/products/features/add_product/product_create_form.dart';
 
 class ProductAddPage extends StatelessWidget {
   const ProductAddPage({super.key});
