@@ -10,6 +10,8 @@ class ProductRecommendation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double listHeight = MediaQuery.of(context).size.height * 0.41;
+
     return Container(
       color: Colors.white,
       child: Column(
@@ -44,7 +46,7 @@ class ProductRecommendation extends StatelessWidget {
           ),
 
           SizedBox(
-            height: 420,
+            height: listHeight,
             child: ProductList(order: 'desc', orderBy: 'soldCount', size: 4),
           ),
 

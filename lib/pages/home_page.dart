@@ -24,13 +24,11 @@ class _UsersHomePageState extends State<UsersHomePage> {
         },
       ),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 260, child: const FurnitureCarousel()),
-            ProductRecommendation(),
-          ],
-        ),
+      body: Column(
+        children: [
+          SizedBox(height: 260, child: const FurnitureCarousel()),
+          SizedBox(child: ProductRecommendation()),
+        ],
       ),
     );
   }

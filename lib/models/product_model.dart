@@ -9,8 +9,7 @@ class ProductModel {
   final double harga;
   final String status;
   final String deskripsi;
-  final double rating; // nanti update backend
-  final int soldCount;
+  final double rating;
 
   ProductModel({
     required this.id,
@@ -24,7 +23,6 @@ class ProductModel {
     required this.status,
     required this.deskripsi,
     this.rating = 0.0,
-    this.soldCount = 0,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -40,7 +38,6 @@ class ProductModel {
       status: json['status'] ?? '',
       deskripsi: json['deskripsi'] ?? '',
       rating: (json['rating'] ?? 0).toDouble(),
-      soldCount: (json['soldCount'] ?? 0).toInt(),
     );
   }
 }

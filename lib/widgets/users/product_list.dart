@@ -73,12 +73,12 @@ class _ProductListState extends State<ProductList> {
               child: Center(child: Text('Tidak ada produk')),
             )
           : GridView.builder(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                childAspectRatio: 0.68,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 16,
+                mainAxisExtent: 224,
               ),
               itemCount: products.length,
               itemBuilder: (context, index) {

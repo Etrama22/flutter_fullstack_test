@@ -64,7 +64,7 @@ class ProductDetailPage extends StatelessWidget {
             ProductDetailInfo(
               name: product.nama,
               rating: product.rating.toStringAsFixed(1),
-              soldCount: '${product.soldCount}',
+              soldCount: '${product.stokPengurangan}',
               // category: product.kategori,
               // status: product.status,
             ),
@@ -81,7 +81,9 @@ class ProductDetailPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: ProductFooter(price: price, discount: null),
+      bottomNavigationBar: SafeArea(
+        child: ProductFooter(price: price, discount: null),
+      ),
     );
   }
 }
