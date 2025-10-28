@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_fullstack/widgets/app_bar/app_bar_menu_item.dart';
+import 'package:project_fullstack/widgets/app_bar/components/app_bar_menu_item.dart';
 
 class AppBarMenu extends StatelessWidget {
   final List<AppBarMenuItem> menuItems;

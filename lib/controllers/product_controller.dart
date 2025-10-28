@@ -66,7 +66,6 @@ class ProductController {
       if (response.statusCode == 200 || response.statusCode == 204) {
         return true;
       } else {
-        // Optional: print server message for debugging
         print('Delete failed (${response.statusCode}): ${response.body}');
         return false;
       }

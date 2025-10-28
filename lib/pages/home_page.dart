@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print, library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import 'package:project_fullstack/widgets/users/carousel_slider.dart';
-import 'package:project_fullstack/widgets/users/custom_app_bar.dart';
+import 'package:project_fullstack/widgets/app_bar/app_bar_home.dart';
 import 'package:project_fullstack/widgets/users/product_recommendation.dart';
 
 class UsersHomePage extends StatefulWidget {

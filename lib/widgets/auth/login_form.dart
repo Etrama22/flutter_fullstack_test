@@ -30,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
     setState(() => _isLoading = false);
 
     if (role == 'admin') {
-      Navigator.pushReplacementNamed(context, AppRoutes.productList);
+      Navigator.pushReplacementNamed(context, AppRoutes.home);
     } else if (role == 'user') {
       Navigator.pushReplacementNamed(context, AppRoutes.home);
     } else {

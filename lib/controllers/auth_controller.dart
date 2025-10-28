@@ -19,9 +19,16 @@ class AuthController {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         print("Login success: $data");
-        // Simpan token
+        // Simpan token dan user data supaya header dapat membaca
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('access_token', data['access_token']);
+        await prefs.setString('access_token', data['access_token'] ?? '');
+        await prefs.setString('auth', jsonEncode(data)); // full response
+        if (data['data'] != null) {
+          await prefs.setString(
+            'user',
+            jsonEncode(data['data']),
+          ); // user object
+        }
         return data['data']?['role'];
       } else {
         print("Login failed: ${response.body}");
@@ -35,6 +42,12 @@ class AuthController {
 
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
+    // hapus semua key yang dipakai header untuk mendeteksi
     await prefs.remove('access_token');
+    await prefs.remove('auth');
+    await prefs.remove('user');
+    await prefs.remove('user_data');
+    await prefs.remove('authData');
+    await prefs.remove('profile');
   }
 }
